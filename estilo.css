@@ -1,113 +1,169 @@
 /* EXERCÍCIO 1: fontes */
 /* importá-las aqui... e definir as `font-family` da turminha... */
+@import "fonts/ravie.css";
+@import "fonts/verdana.css";
 
+:root {
+  --page-min-height: 100vh;
+  --cor-do-texto: #333;
+  --cor-texto-cabecalho: #e90c0c;
+  --body-brackground-color: #fff;
+  --grad-from: #f6f1b2;
+  --grad-to: #4599b2;
+  --border-color: #d3d3d3;
+  --strong-color: #d027aa;
+  --menu-background-color: rgba(255, 255, 255, 0.2);
+  --menu-border-color: #aac0ae;
+}
+
+html {
+  min-height: var(--page-min-height);
+}
 
 body {
-  background-color: #fff;
+  background-color: var(--body-brackground-color);
+  font-family: "Verdana", sans-serif;
+  margin: 0;
+  min-height: var(--page-min-height);
+}
+
+h1 {
+  font-family: "Ravie";
 }
 
 strong {
-  color: #d027aa;
+  color: var(--strong-color);
 }
 
 #recipiente {
-  background-image: linear-gradient(to bottom, #f6f1b2, #4599b2 80%);
-  border-left: 1px solid #d3d3d3;
-  border-right: 1px solid #d3d3d3;
+  background-image: linear-gradient(to bottom, var(--grad-from), var(--grad-to) 80%);
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
 }
 
 #cardapio {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-top: 1px solid #aac0ae;
-  border-bottom: 1px solid #aac0ae;
-  border-left: 1px solid #aac0ae;
+  background-color: var(--menu-background-color);
+  border-top: 1px solid var(--menu-border-color);
+  border-bottom: 1px solid var(--menu-border-color);
+  border-left: 1px solid var(--menu-border-color);
 }
 
 #cardapio h3 {
   font-size: 18px;
-  color: #333;
+  color: var(--cor-do-texto);
   margin-top: 30px;
 }
 
 #cardapio article {
   font-size: 14px;
-  color: #333;
+  color: var(--cor-do-texto);
 }
 
 
 /* EXERCÍCIO 2: layout da página */
 #recipiente {
-  /* layout da página aqui */
-  /* ... */
-  /* ... */
-  /* ... */
-  /* ... */
+  display: grid;
+  grid-template-columns: 154px auto;
+  grid-template-rows: 100px auto 120px;
+  grid-template-areas: 
+    "lateral topo"
+    "lateral meio"
+    "lateral baixo";
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+  min-height: var(--page-min-height);
 }
 
 #cabecalho-pagina {
-
+  grid-area: topo;
 }
 
 #lateral {
+  grid-area: lateral;
 
 }
 
 #cardapio {
+  grid-area: meio;
+  padding: 0px 20px;
 
 }
 
 #rodape-pagina {
-
+  grid-area: baixo;
 }
-
 
 
 /* EXERCÍCIO 3: cabeçalho da página */
 #cabecalho-pagina {
-
+  margin: 10px;
 }
 
 #cabecalho-pagina h1 {
   margin: 0;
   font-size: 36px;
-  color: #e90c0c;
+  color: var(--cor-texto-cabecalho);
   font-weight: normal;
+  text-align: center;
 }
 
 #cabecalho-pagina h2 {
   margin: 0;
   font-size: 24px;
-  color: #333;
+  color: var(--cor-do-texto);
   font-weight: normal;
+  text-align: right;
 }
 
 /* EXERCÍCIO 4: cada item do menu */
 article {
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0px;
 }
 
 
 /* EXERCÍCIO 5: o rodapé */
 #rodape-pagina {
+  display: flex;
+  justify-content: flex-end;
+  margin: 46px 15px 25px 0px;
+  
+  
 }
 
 /* EXERCÍCIO 6: lateral */
 #lateral {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 
 /* EXERCÍCIO 7: o ticket */
 #ticket {
+  position: absolute;
+  top: calc(50vh - 42px);
+  left: -89px;
+  transition: left 100ms ease-out;
 }
 
 #ticket:hover {
+  left: 0px;
 }
 
 
 /* EXERCÍCIO 8: deslocamento no siri e peixe */
 #siri {
+  position: relative;
+  top: 17px;
+  left: -10px;
 }
 
 #peixe {
+  position: relative;
+  right: 44px;
 }
 
 /* EXERCÍCIO 9: bolhas - no HTML e no JS */
@@ -119,4 +175,17 @@ article {
    as custom properties */
 /* coloque aqui a media query para sobrescrever o valor
    das custom properties para o modo escuro */
+   @media (prefers-color-scheme: dark) {
+    :root {
+      --cor-do-texto: #eee;
+      --body-brackground-color: rgb(0, 0, 0);
+      --cor-texto-cabecalho: #e90c0c;
+      --grad-from: rgb(10, 59, 85);
+      --grad-to: rgb(15, 1, 31);
+      --border-color: #3d3c3c;
+      --strong-color: #d027aa;
+      --menu-background-color: rgba(255, 255, 255, 0.2);
+      --menu-border-color: #3d3c3c;
+    }
+  }
 
